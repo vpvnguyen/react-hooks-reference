@@ -1,4 +1,5 @@
 import React from "react";
+import MyProvider from "./MyProvider";
 import ProductList from "./ProductList";
 
 const UseContextApp = () => (

@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import MyContext from "./MyContext";
 
 const initialCarsState = {
-  car1: { name: "Honda", price: 100 },
-  car2: { name: "BMW", price: 150 },
-  car3: { name: "Toyota", price: 200 },
+  cars: {
+    car1: { name: "Honda", price: 100 },
+    car2: { name: "BMW", price: 150 },
+    car3: { name: "Toyota", price: 200 },
+  },
 };
 
 const MyProvider = ({ children }) => {
@@ -34,3 +36,5 @@ const MyProvider = ({ children }) => {
     </MyContext.Provider>
   );
 };
+
+export default MyProvider;
