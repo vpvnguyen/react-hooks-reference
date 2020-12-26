@@ -1,8 +1,8 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
 
-import LifecycleMethods from './components/LifecycleMethods.jsx';
-import Hooks from './components/Hooks.jsx';
+import LifecycleMethods from "./components/LifecycleMethods.jsx";
+import Hooks from "./components/Hooks.jsx";
 
 function App() {
   return (
