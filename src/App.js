@@ -1,13 +1,13 @@
 import React from "react";
 import "./App.css";
 
-import LifecycleMethods from "./components/LifecycleMethods.jsx";
-import Hooks from "./components/Hooks.jsx";
+import LifeCycleMethods from "./components/classLifeCycleMethods/LifeCycleMethods";
+import TodoList from "./components/useState/TodoList.jsx";
 import {
   CountProvider,
   CountDisplay,
   Counter,
-} from "./components/UseContext/KentCDodds/CountContext";
+} from "./components/useContext/KentCDodds/CountContext";
 
 const style = {
   root: {
@@ -26,13 +26,18 @@ function App() {
   return (
     <div style={style.root}>
       <div style={style.container}>
-        <LifecycleMethods />
+        <h1>Class Life Cycle Methods</h1>
+        <LifeCycleMethods />
       </div>
       <div style={style.container}>
-        <Hooks />
+        <h1>useState</h1>
+        <h3>Todo List</h3>
+        <TodoList />
       </div>
 
       <div style={style.container}>
+        <h1>useContext</h1>
+        <h3>Counter</h3>
         <CountProvider>
           <CountDisplay />
           <Counter />

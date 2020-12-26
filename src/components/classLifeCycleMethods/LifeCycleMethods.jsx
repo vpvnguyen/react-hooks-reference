@@ -39,7 +39,7 @@ export default class lifecycleMethods extends Component {
   render() {
     return (
       <div>
-        <p> Open console to view Class Component Lifecycle Methods</p>
+        <p> Open console to view Class Component Life Cycle Methods</p>
         <ul>
           <li>componentWillMount</li>
           <li>componentDidMount</li>
