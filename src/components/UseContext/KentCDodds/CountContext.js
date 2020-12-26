@@ -3,10 +3,25 @@ import React, { createContext, useContext, useReducer } from "react";
 const CountStateContext = createContext();
 const CountDispatchContext = createContext();
 
+const CountDisplay = () => {
+  const { count } = useContext(CountStateContext);
+  return <div>{count}</div>;
+};
+
+const Counter = () => {
+  const dispatch = useCountDispatch();
+  return (
+    <>
+      <button onClick={() => dispatch({ type: "increment" })}>Increment</button>
+      <button onClick={() => dispatch({ type: "decrement" })}>Decrement</button>
+    </>
+  );
+};
+
 const countReducer = (state, action) => {
   switch (action.type) {
     case "increment": {
-      return { count: state.cont + 1 };
+      return { count: state.count + 1 };
     }
     case "decrement": {
       return { count: state.count - 1 };
@@ -48,4 +63,10 @@ const useCountDispatch = () => {
   return context;
 };
 
-export { CountProvider, useCountState, useCountDispatch };
+export {
+  CountDisplay,
+  Counter,
+  CountProvider,
+  useCountState,
+  useCountDispatch,
+};
