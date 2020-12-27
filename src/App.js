@@ -8,6 +8,11 @@ import {
   CountDisplay,
   Counter,
 } from "./components/useContext/KentCDodds/CountContext";
+import { AuthenticationProvider } from "./components/useContext/VNguyen/context/AuthenticationContext";
+import {
+  LoginState,
+  LoginButtons,
+} from "./components/useContext/VNguyen/Login";
 
 const style = {
   root: {
@@ -42,6 +47,13 @@ function App() {
           <CountDisplay />
           <Counter />
         </CountProvider>
+      </div>
+
+      <div style={style.container}>
+        <AuthenticationProvider>
+          <LoginState />
+          <LoginButtons />
+        </AuthenticationProvider>
       </div>
     </div>
   );
