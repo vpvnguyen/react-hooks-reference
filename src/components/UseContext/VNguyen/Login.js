@@ -1,8 +1,8 @@
-import React from "react";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import {
   AuthenticationStateContext,
   useAuthenticationDispatch,
+  useAuthenticationState,
 } from "./context/AuthenticationContext";
 
 export const LoginButtons = () => {
@@ -16,11 +16,10 @@ export const LoginButtons = () => {
 };
 
 export const LoginState = () => {
-  const authentication = useContext(AuthenticationStateContext);
+  const authentication = useAuthenticationState();
   return (
     <>
-      <h1>useContext</h1>
-      <h3>Authentication: {authentication ? "Logged In" : "Logged Out"}</h3>
+      <div>Authentication: {authentication ? "Logged In" : "Logged Out"}</div>
     </>
   );
 };

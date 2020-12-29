@@ -13,6 +13,7 @@ import {
   LoginState,
   LoginButtons,
 } from "./components/useContext/VNguyen/Login";
+import Dashboard from "./components/useContext/VNguyen/Dashboard";
 
 const style = {
   root: {
@@ -50,9 +51,19 @@ function App() {
       </div>
 
       <div style={style.container}>
+        <h1>useContext</h1>
+
         <AuthenticationProvider>
-          <LoginState />
-          <LoginButtons />
+          <div style={style.container}>
+            <h3>Login Page</h3>
+            <LoginState />
+            <LoginButtons />
+          </div>
+
+          <div style={style.container}>
+            <h3>Dashboard</h3>
+            <Dashboard />
+          </div>
         </AuthenticationProvider>
       </div>
     </div>
