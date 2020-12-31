@@ -16,6 +16,7 @@ const authenticationReducer = (state, action) => {
 
 export const AuthenticationProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authenticationReducer, false);
+
   return (
     <AuthenticationStateContext.Provider value={state}>
       <AuthenticationDispatchContext.Provider value={dispatch}>
