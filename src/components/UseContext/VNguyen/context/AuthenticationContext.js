@@ -1,16 +1,14 @@
 import React, { createContext, useContext, useReducer } from "react";
 
-export const AuthenticationStateContext = createContext();
-export const AuthenticationDispatchContext = createContext();
+const AuthenticationStateContext = createContext();
+const AuthenticationDispatchContext = createContext();
 
 const authenticationReducer = (state, action) => {
   switch (action.type) {
-    case "login":
+    case "LOGIN":
       return true;
-
-    case "logout":
+    case "LOGOUT":
       return false;
-
     default:
       throw new Error(`Unhandled action type: ${action.type}`);
   }

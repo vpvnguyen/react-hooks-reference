@@ -1,7 +1,7 @@
 import React from "react";
 import {
-  useAuthenticationDispatch,
   useAuthenticationState,
+  useAuthenticationDispatch,
 } from "./context/AuthenticationContext";
 
 export const DashboardAuthenticationButtons = () => {
@@ -9,7 +9,7 @@ export const DashboardAuthenticationButtons = () => {
   const dispatch = useAuthenticationDispatch();
 
   const logout = () => {
-    dispatch({ type: "logout" });
+    dispatch({ type: "LOGOUT" });
   };
 
   return (

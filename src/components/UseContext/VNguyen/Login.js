@@ -1,18 +1,18 @@
 import React from "react";
 import {
-  useAuthenticationDispatch,
   useAuthenticationState,
+  useAuthenticationDispatch,
 } from "./context/AuthenticationContext";
 
 export const LoginButtons = () => {
   const dispatch = useAuthenticationDispatch();
 
   const login = () => {
-    dispatch({ type: "login" });
+    dispatch({ type: "LOGIN" });
   };
 
   const logout = () => {
-    dispatch({ type: "logout" });
+    dispatch({ type: "LOGOUT" });
   };
 
   return (
