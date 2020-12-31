@@ -1,6 +1,5 @@
 import React from "react";
 import "./App.css";
-
 import LifeCycleMethods from "./components/classLifeCycleMethods/LifeCycleMethods";
 import TodoList from "./components/useState/TodoList.jsx";
 import {
@@ -13,7 +12,10 @@ import {
   LoginState,
   LoginButtons,
 } from "./components/useContext/VNguyen/Login";
-import Dashboard from "./components/useContext/VNguyen/Dashboard";
+import {
+  DashboardAuthenticationState,
+  DashboardAuthenticationButtons,
+} from "./components/useContext/VNguyen/Dashboard";
 
 const style = {
   root: {
@@ -61,8 +63,9 @@ function App() {
           </div>
 
           <div style={style.container}>
-            <h3>Dashboard</h3>
-            <Dashboard />
+            <h3>Dashboard Page</h3>
+            <DashboardAuthenticationState />
+            <DashboardAuthenticationButtons />
           </div>
         </AuthenticationProvider>
       </div>

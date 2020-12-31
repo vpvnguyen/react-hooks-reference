@@ -1,34 +1,21 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
-  AuthenticationStateContext,
   useAuthenticationDispatch,
   useAuthenticationState,
 } from "./context/AuthenticationContext";
 
-const DashboardAuthenticationState = () => {
-  //   const authentication = useContext(AuthenticationStateContext);
+export const DashboardAuthenticationButtons = () => {
   const authentication = useAuthenticationState();
-
-  return (
-    <>
-      {authentication ? (
-        <div>Dashboard State</div>
-      ) : (
-        <div>You are not logged in</div>
-      )}
-    </>
-  );
-};
-
-const DashboardAuthenticationButtons = () => {
-  //   const authentication = useContext(AuthenticationStateContext);
-  const authentication = useAuthenticationState();
-
   const dispatch = useAuthenticationDispatch();
+
+  const logout = () => {
+    dispatch({ type: "logout" });
+  };
+
   return (
     <>
       {authentication ? (
-        <button onClick={dispatch({ type: "logout" })}>Logout</button>
+        <button onClick={() => logout()}>Logout</button>
       ) : (
         <button disabled={true}>Logout</button>
       )}
@@ -36,13 +23,16 @@ const DashboardAuthenticationButtons = () => {
   );
 };
 
-const Dashboard = () => {
+export const DashboardAuthenticationState = () => {
+  const authentication = useAuthenticationState();
+
   return (
     <>
-      <DashboardAuthenticationState />
-      <DashboardAuthenticationButtons />
+      {authentication ? (
+        <div>Welcome to your Dashboard :)</div>
+      ) : (
+        <div>You are not logged in. Please login to view your Dashboard.</div>
+      )}
     </>
   );
 };
-
-export default Dashboard;
