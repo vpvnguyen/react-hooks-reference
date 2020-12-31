@@ -13,13 +13,9 @@ export const DashboardAuthenticationButtons = () => {
   };
 
   return (
-    <>
-      {authentication ? (
-        <button onClick={() => logout()}>Logout</button>
-      ) : (
-        <button disabled={true}>Logout</button>
-      )}
-    </>
+    <button onClick={() => logout()} disabled={authentication ? false : true}>
+      Logout
+    </button>
   );
 };
 
