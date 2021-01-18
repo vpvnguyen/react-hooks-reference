@@ -1,6 +1,8 @@
 import React, { useState, createContext, useContext } from "react";
 import { style } from "../../../App";
 
+// source: https://blog.isquaredsoftware.com/2021/01/blogged-answers-why-react-context-is-not-a-state-management-tool-and-why-it-doesnt-replace-redux/
+
 const MyContext = createContext();
 
 const ParentComponent = () => {
