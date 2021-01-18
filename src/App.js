@@ -16,8 +16,9 @@ import {
   DashboardAuthenticationState,
   DashboardAuthenticationButtons,
 } from "./components/useContext/VNguyen/Dashboard";
+import PropDrilling from "./components/useContext/PropDrilling/PropDrilling";
 
-const style = {
+export const style = {
   root: {
     display: "flex",
     flexDirection: "column",
@@ -68,6 +69,12 @@ function App() {
             <DashboardAuthenticationButtons />
           </div>
         </AuthenticationProvider>
+      </div>
+
+      <div style={style.container}>
+        <h1>useContext</h1>
+        <h3>Prop Drilling</h3>
+        <PropDrilling />
       </div>
     </div>
   );
