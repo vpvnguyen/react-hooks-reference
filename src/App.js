@@ -16,6 +16,15 @@ import {
   DashboardAuthenticationState,
   DashboardAuthenticationButtons,
 } from "./components/useContext/VNguyen/Dashboard";
+import { AuthenticationProviderV2 } from "./components/useContext/VNguyenV2/context/AuthenticationContextV2";
+import {
+  LoginStateV2,
+  LoginButtonsV2,
+} from "./components/useContext/VNguyenV2/LoginV2";
+import {
+  DashboardAuthenticationStateV2,
+  DashboardAuthenticationButtonsV2,
+} from "./components/useContext/VNguyenV2/DashboardV2";
 import PropDrilling from "./components/useContext/PropDrilling/PropDrilling";
 
 export const style = {
@@ -69,6 +78,24 @@ function App() {
             <DashboardAuthenticationButtons />
           </div>
         </AuthenticationProvider>
+      </div>
+
+      <div style={style.container}>
+        <h1>useContext</h1>
+
+        <AuthenticationProviderV2>
+          <div style={style.container}>
+            <h3>Login Page V2</h3>
+            <LoginStateV2 />
+            <LoginButtonsV2 />
+          </div>
+
+          <div style={style.container}>
+            <h3>Dashboard Page V2</h3>
+            <DashboardAuthenticationStateV2 />
+            <DashboardAuthenticationButtonsV2 />
+          </div>
+        </AuthenticationProviderV2>
       </div>
 
       <div style={style.container}>
