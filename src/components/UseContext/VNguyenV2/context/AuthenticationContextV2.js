@@ -32,12 +32,14 @@ export const AuthenticationProviderV2 = ({ children }) => {
 };
 
 export const useAuthenticationContext = () => {
-  const context = useContext(AuthenticationContext);
+  const { authenticationState, dispatchAuthentication } = useContext(
+    AuthenticationContext
+  );
 
-  if (context === undefined)
+  if (authenticationState === undefined || dispatchAuthentication === undefined)
     throw new Error(
       `useAuthenticationContext must be used within AuthenticationContext.Provider`
     );
 
-  return context;
+  return { authenticationState, dispatchAuthentication };
 };
