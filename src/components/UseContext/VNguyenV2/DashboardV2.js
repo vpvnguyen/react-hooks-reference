@@ -1,35 +1,49 @@
 import React from "react";
-import { useAuthenticationContext } from "./context/AuthenticationContextV2";
+import {
+  useAuthenticationContext,
+  useIsAuthenticatedContext,
+  useAuthenticatedUserContext,
+  useAuthenticatedRoleContext,
+} from "./context/AuthenticationContextV2";
 
 export const DashboardAuthenticationButtonsV2 = () => {
-  const {
-    authenticationState,
-    dispatchAuthentication,
-  } = useAuthenticationContext();
+  const { dispatchAuthentication } = useAuthenticationContext();
+  const isAuthenticated = useIsAuthenticatedContext();
 
   const logout = () => {
     dispatchAuthentication({ type: "LOGOUT" });
   };
 
   return (
-    <button
-      onClick={() => logout()}
-      disabled={authenticationState ? false : true}
-    >
+    <button onClick={() => logout()} disabled={isAuthenticated ? false : true}>
       Logout
     </button>
   );
 };
 
 export const DashboardAuthenticationStateV2 = () => {
-  const { authenticationState } = useAuthenticationContext();
+  const isAuthenticated = useIsAuthenticatedContext();
+  const authenticatedUser = useAuthenticatedUserContext();
+  const authenticatedRole = useAuthenticatedRoleContext();
 
   return (
     <>
-      {authenticationState ? (
-        <div>Welcome to your Dashboard :)</div>
+      {isAuthenticated ? (
+        <div>
+          <p>
+            Welcome to your Dashboard, <b>{authenticatedUser}</b> :)
+          </p>
+          <p>
+            You have <b>{authenticatedRole}</b> access
+          </p>
+        </div>
       ) : (
-        <div>You are not logged in. Please login to view your Dashboard.</div>
+        <div>
+          <p>
+            Welcome, you are a <b>{authenticatedRole}</b>.
+          </p>
+          <p>Please login to view your Dashboard.</p>
+        </div>
       )}
     </>
   );
