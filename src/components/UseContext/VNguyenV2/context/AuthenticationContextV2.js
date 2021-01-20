@@ -2,21 +2,55 @@ import React, { createContext, useContext, useReducer } from "react";
 
 const AuthenticationContext = createContext();
 
-const authenticationReducerV2 = (state, action) => {
+const user = {
+  name: "VNguyen",
+  role: "DEVELOPER",
+};
+
+const initialAuthenticationState = {
+  value: "UNAUTHENTICATED",
+  isAuthenticated: false,
+  user: {
+    name: "",
+    role: "GUEST",
+    isActive: false,
+    doNotTouch: "Do not touch this string",
+  },
+};
+
+const authenticationReducer = (state, action) => {
   switch (action.type) {
     case "LOGIN":
-      return true;
+      return {
+        ...state,
+        value: "AUTHENTICATED",
+        isAuthenticated: true,
+        user: {
+          ...state.user,
+          isActive: true,
+          name: action.payload,
+          role: user.role,
+        },
+      };
     case "LOGOUT":
-      return false;
+      return initialAuthenticationState;
     default:
       throw new Error(`Unhandled action type: ${action.type}`);
   }
 };
 
+const validatedContext = (context) => {
+  if (context === undefined)
+    throw new Error(
+      `context: ${context} must be used within AuthenticationContext.Provider`
+    );
+  return context;
+};
+
 export const AuthenticationProviderV2 = ({ children }) => {
   const [authenticationState, dispatchAuthentication] = useReducer(
-    authenticationReducerV2,
-    false
+    authenticationReducer,
+    initialAuthenticationState
   );
 
   const authenticationContextValue = {
@@ -36,10 +70,36 @@ export const useAuthenticationContext = () => {
     AuthenticationContext
   );
 
-  if (authenticationState === undefined || dispatchAuthentication === undefined)
-    throw new Error(
-      `useAuthenticationContext must be used within AuthenticationContext.Provider`
-    );
+  console.log(
+    `useAuthenticationContext - authenticationState: ${JSON.stringify(
+      authenticationState,
+      null,
+      2
+    )}`
+  );
 
-  return { authenticationState, dispatchAuthentication };
+  return {
+    authenticationState: validatedContext(authenticationState),
+    dispatchAuthentication: validatedContext(dispatchAuthentication),
+  };
+};
+
+export const useAuthenticationValueContext = () => {
+  const { authenticationState } = useContext(AuthenticationContext);
+  return validatedContext(authenticationState.value);
+};
+
+export const useIsAuthenticatedContext = () => {
+  const { authenticationState } = useContext(AuthenticationContext);
+  return validatedContext(authenticationState.isAuthenticated);
+};
+
+export const useAuthenticatedUserContext = () => {
+  const { authenticationState } = useContext(AuthenticationContext);
+  return validatedContext(authenticationState.user.name);
+};
+
+export const useAuthenticatedRoleContext = () => {
+  const { authenticationState } = useContext(AuthenticationContext);
+  return validatedContext(authenticationState.user.role);
 };
