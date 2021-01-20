@@ -17,10 +17,7 @@ import {
   DashboardAuthenticationButtons,
 } from "./components/useContext/VNguyen/Dashboard";
 import { AuthenticationProviderV2 } from "./components/useContext/VNguyenV2/context/AuthenticationContextV2";
-import {
-  LoginStateV2,
-  LoginButtonsV2,
-} from "./components/useContext/VNguyenV2/LoginV2";
+import { LoginForm } from "./components/useContext/VNguyenV2/LoginV2";
 import {
   DashboardAuthenticationStateV2,
   DashboardAuthenticationButtonsV2,
@@ -86,8 +83,7 @@ function App() {
         <AuthenticationProviderV2>
           <div style={style.container}>
             <h3>Login Page V2</h3>
-            <LoginStateV2 />
-            <LoginButtonsV2 />
+            <LoginForm />
           </div>
 
           <div style={style.container}>
