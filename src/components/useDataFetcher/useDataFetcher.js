@@ -25,7 +25,7 @@ const dataFetchReducer = (state, action) => {
   }
 };
 
-export const useDataApi = (initialUrl, initialData) => {
+export const useDataFetcher = (initialUrl, initialData) => {
   const [url, setUrl] = useState(initialUrl);
 
   const [state, dispatch] = useReducer(dataFetchReducer, {
