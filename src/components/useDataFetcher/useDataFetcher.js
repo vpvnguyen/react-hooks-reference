@@ -61,5 +61,5 @@ export const useDataFetcher = (initialUrl) => {
     };
   }, [url, state.data]);
 
-  return { state, setUrl };
+  return [state, setUrl];
 };
