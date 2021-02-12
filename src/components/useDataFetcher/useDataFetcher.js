@@ -10,14 +10,13 @@ const FETCH_FAILURE = "FETCH_FAILURE";
 const dataFetchReducer = (state, action) => {
   switch (action.type) {
     case FETCH_INIT:
-      console.log("init");
       return { ...state, loading: true, error: false };
     case FETCH_SUCCESS:
       return {
         ...state,
         loading: false,
         error: false,
-        payload: action.payload,
+        data: action.payload,
       };
     case FETCH_FAILURE:
       return { ...state, loading: false, error: true };
@@ -26,14 +25,13 @@ const dataFetchReducer = (state, action) => {
   }
 };
 
-export const useDataFetcher = (initialUrl) => {
-  console.log("useDataFetcher invoked");
+export const useDataFetcher = (initialUrl, initialData = null) => {
   const [url, setUrl] = useState(initialUrl);
 
   const [state, dispatch] = useReducer(dataFetchReducer, {
     loading: false,
     error: false,
-    data: null,
+    data: initialData,
   });
 
   useEffect(() => {
@@ -44,11 +42,8 @@ export const useDataFetcher = (initialUrl) => {
 
       try {
         const response = await axios(url);
-        console.log(response.data);
         if (runTask) dispatch({ type: FETCH_SUCCESS, payload: response.data });
-        console.log(state.data);
       } catch (error) {
-        console.error("fetchData error:", error);
         if (runTask) dispatch({ type: FETCH_FAILURE });
       }
     };
@@ -56,10 +51,9 @@ export const useDataFetcher = (initialUrl) => {
     fetchData();
 
     return () => {
-      console.log("Cancelling useDataFetcher");
       runTask = false;
     };
-  }, [url, state.data]);
+  }, [url]);
 
-  return [state, setUrl];
+  return { ...state, setUrl };
 };
