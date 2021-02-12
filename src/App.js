@@ -23,6 +23,7 @@ import {
   DashboardAuthenticationButtonsV2,
 } from "./components/useContext/VNguyenV2/DashboardV2";
 import PropDrilling from "./components/useContext/PropDrilling/PropDrilling";
+import { UserList } from "./components/useDataFetcher/UserList";
 
 export const style = {
   root: {
@@ -98,6 +99,14 @@ function App() {
         <h1>useContext</h1>
         <h3>Prop Drilling</h3>
         <PropDrilling />
+      </div>
+
+      <div style={style.container}>
+        <h1>useReducer</h1>
+        <h3>useDataFetcher</h3>
+        <div>
+          FETCHED DATA: <UserList />
+        </div>
       </div>
     </div>
   );
