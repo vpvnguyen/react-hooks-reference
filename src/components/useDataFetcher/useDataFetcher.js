@@ -10,6 +10,7 @@ const FETCH_FAILURE = "FETCH_FAILURE";
 const dataFetchReducer = (state, action) => {
   switch (action.type) {
     case FETCH_INIT:
+      console.log("init");
       return { ...state, loading: true, error: false };
     case FETCH_SUCCESS:
       return {
@@ -25,13 +26,14 @@ const dataFetchReducer = (state, action) => {
   }
 };
 
-export const useDataFetcher = (initialUrl, initialData) => {
+export const useDataFetcher = (initialUrl) => {
+  console.log("useDataFetcher invoked");
   const [url, setUrl] = useState(initialUrl);
 
   const [state, dispatch] = useReducer(dataFetchReducer, {
     loading: false,
     error: false,
-    data: initialData,
+    data: null,
   });
 
   useEffect(() => {
@@ -42,7 +44,9 @@ export const useDataFetcher = (initialUrl, initialData) => {
 
       try {
         const response = await axios(url);
+        console.log(response.data);
         if (runTask) dispatch({ type: FETCH_SUCCESS, payload: response.data });
+        console.log(state.data);
       } catch (error) {
         console.error("fetchData error:", error);
         if (runTask) dispatch({ type: FETCH_FAILURE });
@@ -52,9 +56,10 @@ export const useDataFetcher = (initialUrl, initialData) => {
     fetchData();
 
     return () => {
+      console.log("Cancelling useDataFetcher");
       runTask = false;
     };
-  }, [url]);
+  }, [url, state.data]);
 
-  return { loading, error, data, setUrl };
+  return { state, setUrl };
 };
