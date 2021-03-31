@@ -34,3 +34,9 @@ const useCount = () => {
   }
   return context;
 };
+
+// NOTE: not exporting CountContext is intentional
+// exposing only one way to provide the context value and only one way to consume it
+// allows to ensure that the context value is used the way it should be
+// and allows to provide useful utilities for the consumers
+export { CountProvider, useCount };
