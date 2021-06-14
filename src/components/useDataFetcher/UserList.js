@@ -26,7 +26,10 @@ export const UserList = () => {
 
       {error && <div>There was an error loading the user list.</div>}
 
-      {data && data.results.map((user, index) => <div>{user.name.first}</div>)}
+      {data &&
+        data.results.map((user, index) => (
+          <div key={`${user.name.first}-${index}`}>{user.name.first}</div>
+        ))}
     </div>
   );
 };
