@@ -27,7 +27,7 @@ export const DashboardAuthenticationState = () => {
       {authentication ? (
         <div>Welcome to your Dashboard :)</div>
       ) : (
-        <div>You are not logged in. Please login to view your Dashboard.</div>
+        <div>You are not logged in. Login to view your Dashboard.</div>
       )}
     </>
   );
