@@ -24,6 +24,8 @@ import {
 } from "./components/useContext/VNguyenV2/DashboardV2";
 import PropDrilling from "./components/useContext/PropDrilling/PropDrilling";
 import { UserList } from "./components/useDataFetcher/UserList";
+import { ActivityDetector } from "./components/useIdle/useIdle";
+import { IdleCustom } from "./components/useIdleCustom/IdleCustom";
 
 export const style = {
   root: {
@@ -107,6 +109,16 @@ function App() {
         <div>
           FETCHED DATA: <UserList />
         </div>
+      </div>
+
+      <div style={style.container}>
+        <h1>useIdle</h1>
+        <ActivityDetector />
+      </div>
+
+      <div style={style.container}>
+        <h1>useIdleCustom</h1>
+        <IdleCustom />
       </div>
     </div>
   );
